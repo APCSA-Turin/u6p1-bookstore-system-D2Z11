@@ -2,11 +2,12 @@ package com.example.project;
 
 public class BookStore {
 
-    // requires at least 2 attributes Book[] books, User[] users (initialized to an
-    // empty array of 10 max users)
+    // 2 attributes: Book[] books, User[] users (initialized to an empty array of 10 max users)
+    // Intially set books length to 5 in order to ensure that if any methos are called such as consolidateUser, it will return empty instead of not returning anything
     private Book[] books = new Book[5];
     private int bookIndex = 0;
-    private User[] users = new User[10]; // (initialized to an empty array of 10 max users)
+    // (initialized to an empty array of 10 max users)
+    private User[] users = new User[10];
     private int userIndex = 0;
 
     // requires 1 empty constructor
@@ -14,6 +15,7 @@ public class BookStore {
 
     }
 
+    // Getter/setter methods
     public User[] getUsers() {
         return users;
     }
@@ -26,20 +28,21 @@ public class BookStore {
         return books;
     }
 
+    // Modify the user at userIndex (which is at the end of the User[] array) in order to add a user to the end
     public void addUser(User user) {
         users[userIndex] = user;
+        // Increment userIndex so you can keep track of the end of the User[] array
         userIndex++;
     }
 
     public void removeUser(User user) {
-        // User[] newUsers = new User[10];
         for (int i = 0; i < users.length; i++) {
-            // If the given user to remove matches the current user's ID they are the same
-            // user so remove it
+            // If the given user has the same memory address as the user at index i they are the same so set the value there to null
             if (users[i] == user) {
                 users[i] = null;
             }
         }
+        // Consolidate users in order to make sure there isn't empty gaps with null values
         consolidateUsers();
     }
 
@@ -48,40 +51,49 @@ public class BookStore {
         User[] newUsers = new User[users.length];
         int newUserIndex = 0;
 
-        for (int i = 0; i < newUsers.length; i++) {
-            System.out.println(newUsers[i]);
-        }
-        System.out.println("----------");
+        // For testing
+        // for (int i = 0; i < newUsers.length; i++) {
+        //     System.out.println(newUsers[i]);
+        // }
+        // System.out.println("----------");
 
         for (int i = 0; i < users.length; i++) {
-            // If the User is not null then add it to the end of newUsers (using
-            // newUserIndex) and increment newUserIndex.
-            // Ignore all nulls because by default the new allocated array is filled with 10
-            // null values
+            // If the user is not null then add it to the end of newUsers (using newUserIndex) and increment newUserIndex. This ensures that the new array only has non-null values
+            // Ignore all null values
             if (users[i] != null) {
                 newUsers[newUserIndex] = users[i];
                 newUserIndex++;
             }
         }
-        System.out.println("----------");
-        for (int i = 0; i < newUsers.length; i++) {
-            System.out.println(newUsers[i]);
-        }
-        System.out.println("----------");
+        // For testing
+        // System.out.println("----------");
+        // for (int i = 0; i < newUsers.length; i++) {
+        //     System.out.println(newUsers[i]);
+        // }
+        // System.out.println("----------");
+
+        // Ensure that the users variable is updated with newUsers
         users = newUsers;
     }
 
+    // Modify the null value at bookIndex (which is at the end of the Book[] array) in order to add a book to the end
+    // There is no check for if bookIndex is greater than the end of the array
     public void addBook(Book book) {
         books[bookIndex] = book;
+        // Ensure that the index of end of the Book[] array is updated
         bookIndex++;
     }
 
     public void insertBook(Book book, int index) {
+        // Allocate a new Book array with length 5
         Book[] newBooks = new Book[5];
+        // Insert the book at the given index
         newBooks[index] = book;
+        // Fill values previous to the index as books from the original books array
         for (int i = 0; i < index; i++) {
             newBooks[i] = books[i];
         }
+        // Shift the values past the index from the original array and assign those values to the newBooks array
         for (int i = index + 1; i < books.length - 1; i++) {
             newBooks[i] = books[i - 1];
         }
@@ -89,12 +101,10 @@ public class BookStore {
     }
 
     public void removeBook(Book book) {
-        // Book[] newBooks = new Book[5];
         for (int i = 0; i < books.length; i++) {
             // Ensure books[i] is not null before checking if a method exists on it
             if (books[i] != null) {
-                // If the given user to remove matches the current user's ID they are the same
-                // user so remove it
+                // If the given user to remove matches the current user's ID they are the same user so remove it
                 if (books[i] == book) {
                     // First check if the quantity is greater than 1
                     if (books[i].getQuantity() > 1) {

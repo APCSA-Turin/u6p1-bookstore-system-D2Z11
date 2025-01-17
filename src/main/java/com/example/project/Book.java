@@ -1,13 +1,13 @@
 package com.example.project;
 
 public class Book{
-    //requires 5 attributes String title; String author; int yearPublished; String isbn; int quantity
+    //5 attributes: String title; String author; int yearPublished; String isbn; int quantity
     private String title;
     private String author;
     private int yearPublished;
     private String isbn;
     private int quantity;
-    //requires 1 constructor with 5 arguments that intitialize the attribtues of the class.
+    // 1 constructor with 5 arguments that intitialize the attribtues of the class.
     Book(String title, String author, int yearPublished, String isbn, int quantity) {
         this.title = title;
         this.author = author;
@@ -15,7 +15,7 @@ public class Book{
         this.isbn = isbn;
         this.quantity = quantity;
     }
-    
+    // Getter/setter methods
     public String getTitle() {return title;}
 
     public void setTitle(String title) {this.title = title;}
@@ -36,6 +36,7 @@ public class Book{
 
     public void setQuantity(int quantity) {this.quantity = quantity;}
 
+    // bookInfo concatenates strings and variables to return info about the Book
     public String bookInfo(){
         return "Title: " + title + ", Author: " + author + ", Year: " + yearPublished + ", ISBN: " + isbn + ", Quantity: " + quantity;
     } //returns "Title: []; Author: []; Year: []; ISBN: []; Quantity: []"

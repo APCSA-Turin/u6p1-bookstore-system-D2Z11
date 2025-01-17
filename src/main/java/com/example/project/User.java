@@ -26,19 +26,20 @@ public class User{
 
     public void setBooks(Book[] books) {this.books = books;}
 
-    // returns the info about the book the user owns
+    // returns the info/booklist about the books the user owns, if no book exists at the index, add "empty"
     public String bookListInfo(){
         String info = "";
         for (Book book : books) {
             if (book == null) {
                 info += "empty";
             } else {
+                // Use helper method bookInfo in order to append book info like isbn, author, etc
                 info += book.bookInfo();
             }
             info += "\n";
         }
         return info;
-    } //returns a booklist for the user, if empty, output "empty"
+    } 
 
     public String userInfo(){
         return "Name: " + name + "\nId: " + Id + "\nBooks: \n" + bookListInfo();
