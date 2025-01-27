@@ -1,5 +1,6 @@
 package com.example.project;
 
+
 public class Book{
     //5 attributes: String title; String author; int yearPublished; String isbn; int quantity
     private String title;
@@ -34,7 +35,9 @@ public class Book{
 
     public int getQuantity() {return quantity;}
 
-    public void setQuantity(int quantity) {this.quantity = quantity;}
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     // bookInfo concatenates strings and variables to return info about the Book
     public String bookInfo(){

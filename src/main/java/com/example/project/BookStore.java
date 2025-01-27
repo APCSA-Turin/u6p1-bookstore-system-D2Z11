@@ -1,7 +1,6 @@
 package com.example.project;
 
 public class BookStore {
-
     // 2 attributes: Book[] books, User[] users (initialized to an empty array of 10 max users)
     // Intially set books length to 5 in order to ensure that if any methos are called such as consolidateUser, it will return empty instead of not returning anything
     private Book[] books = new Book[5];
@@ -76,12 +75,47 @@ public class BookStore {
         users = newUsers;
     }
 
+    // method to move non-null items to the front and null items to the back
+    public void consolidateBooks() {
+        Book[] newBooks = new Book[books.length];
+        int newBookIndex = 0;
+
+        // For testing
+        // for (int i = 0; i < newUsers.length; i++) {
+        //     System.out.println(newUsers[i]);
+        // }
+        // System.out.println("----------");
+
+        for (int i = 0; i < books.length; i++) {
+            // If the book is not null then add it to the end of newBook (using newBookIndex) and increment newBookIndex. This ensures that the new array only has non-null values
+            // Ignore all null values
+            if (books[i] != null) {
+                newBooks[newBookIndex] = books[i];
+                newBookIndex++;
+            }
+        }
+        // For testing
+        // System.out.println("----------");
+        // for (int i = 0; i < newUsers.length; i++) {
+        //     System.out.println(newUsers[i]);
+        // }
+        // System.out.println("----------");
+
+        // Ensure that the users variable is updated with newUsers
+        books = newBooks;
+    }
+
     // Modify the null value at bookIndex (which is at the end of the Book[] array) in order to add a book to the end
     // There is no check for if bookIndex is greater than the end of the array
     public void addBook(Book book) {
-        books[bookIndex] = book;
-        // Ensure that the index of end of the Book[] array is updated
-        bookIndex++;
+        // Ensure that that it won't overflow the array
+        if (bookIndex <= 4) {
+            books[bookIndex] = book;
+            // Ensure that the index of end of the Book[] array is updated
+            bookIndex++;
+        } else {
+            System.out.println("Library is full");
+        }
     }
 
     public void insertBook(Book book, int index) {
@@ -113,6 +147,7 @@ public class BookStore {
                     } else {
                         // This means there is only one book, so remove it completely
                         books[i] = null;
+                        bookIndex--;
                     }
                 }
             }

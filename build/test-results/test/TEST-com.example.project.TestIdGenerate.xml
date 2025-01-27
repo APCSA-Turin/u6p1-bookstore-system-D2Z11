@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.project.TestIdGenerate" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-01-16T14:26:44" hostname="codespaces-b3f3a9" time="0.002">
+<testsuite name="com.example.project.TestIdGenerate" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-01-27T17:10:31" hostname="codespaces-b3f3a9" time="0.001">
   <properties/>
-  <testcase name="testIdGenerate()" classname="com.example.project.TestIdGenerate" time="0.002"/>
+  <testcase name="testIdGenerate()" classname="com.example.project.TestIdGenerate" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

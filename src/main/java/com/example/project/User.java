@@ -41,6 +41,52 @@ public class User{
         return info;
     } 
 
+    public void removeBook(Book book) {
+        for (int i = 0; i < books.length; i++) {
+            // Ensure books[i] is not null before checking if a method exists on it
+            if (books[i] != null) {
+                // If the given user to remove matches the current user's ID they are the same user so remove it
+                if (books[i] == book) {
+                    // First check if the quantity is greater than 1
+                    if (books[i].getQuantity() > 1) {
+                        // Then, decrease the quantity by 1
+                        books[i].setQuantity(books[i].getQuantity() - 1);
+                        // Make sure to return to ensure that if there is another of the same book you don't remove the other one
+                        return;
+                    } else {
+                        // This means there is only one book, so remove it completely
+                        books[i] = null;
+                        // Make sure to return to ensure that if there is another of the same book you don't remove the other one
+                        return;
+                    }
+                }
+            }
+        }
+        removeAllBookNulls();
+    }
+
+    public void removeAllBookNulls() {
+        int nullAmount = 0;
+        for (int i = 0; i < books.length; i++) {
+            // Ensure books[i] is not null before checking if a method exists on it
+            if (books[i] == null) {
+                nullAmount++;
+            }
+        }
+        // Make a new array but without the null values (book length is amount of nulls found)
+        Book[] newBooks = new Book[books.length - nullAmount];
+        int newBookIndex = 0;
+        for (int i = 0; i < books.length; i++) {
+            // Ensure books[i] is not null before checking if a method exists on it
+            if (books[i] != null) {
+                // Set the last index of newBooks to the book that is not null
+                newBooks[newBookIndex] = books[i];
+                newBookIndex++;
+            }
+        }
+        books = newBooks;
+    }
+
     public String userInfo(){
         return "Name: " + name + "\nId: " + Id + "\nBooks: \n" + bookListInfo();
     } //returns  "Name: []\nID: []\nBooks:\n[]"
