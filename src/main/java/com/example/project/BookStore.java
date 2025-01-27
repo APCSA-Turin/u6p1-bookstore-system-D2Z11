@@ -47,7 +47,9 @@ public class BookStore {
 
     // method to move non-null items to the front and null items to the back
     public void consolidateUsers() {
+        // Allocate new array so a new array can be assigned with null items in different places
         User[] newUsers = new User[users.length];
+        // To track the index to add values from old array
         int newUserIndex = 0;
 
         // For testing
@@ -77,7 +79,9 @@ public class BookStore {
 
     // method to move non-null items to the front and null items to the back
     public void consolidateBooks() {
+        // Allocate new array so a new array can be assigned with null items in different places
         Book[] newBooks = new Book[books.length];
+        // To track the index to add values from old array
         int newBookIndex = 0;
 
         // For testing
@@ -152,10 +156,12 @@ public class BookStore {
                 }
             }
         }
+        // Run helper function to remove null values
         removeAllBookNulls();
     }
 
     public void removeAllBookNulls() {
+        // To track amount of nulls
         int nullAmount = 0;
         for (int i = 0; i < books.length; i++) {
             // Ensure books[i] is not null before checking if a method exists on it
@@ -174,6 +180,7 @@ public class BookStore {
                 newBookIndex++;
             }
         }
+        // Assign books to newBooks to update the object's books value
         books = newBooks;
     }
 
@@ -197,6 +204,7 @@ public class BookStore {
                 newUserIndex++;
             }
         }
+        // Assign users to newUsers to update the object's books value
         users = newUsers;
     }
 

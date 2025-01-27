@@ -62,6 +62,7 @@ public class User{
                 }
             }
         }
+        // Helper function to remove null values in new array
         removeAllBookNulls();
     }
 
@@ -81,9 +82,11 @@ public class User{
             if (books[i] != null) {
                 // Set the last index of newBooks to the book that is not null
                 newBooks[newBookIndex] = books[i];
+                // Increment index to keep track of where to update the values
                 newBookIndex++;
             }
         }
+        // Assign books to the new books array
         books = newBooks;
     }
 
